@@ -58,6 +58,9 @@ while not gameover: #GAME LOOP##################################################
         if event.type == pygame.KEYDOWN: #keyboard input
             if event.key == pygame.K_LEFT:
                 keys[LEFT]=True
+             
+             elif event.key == pygame.K_RIGHT:
+                keys[RIGHT] = True
 
             elif event.key == pygame.K_UP:
                 keys[UP]=True
@@ -67,6 +70,9 @@ while not gameover: #GAME LOOP##################################################
 
             elif event.key == pygame.K_UP:
                 keys[UP]=False
+                
+             elif event.key == pygame.K_RIGHT:
+                keys[RIGHT] = False
          
     #physics section--------------------------------------------------------------------
     #LEFT MOVEMENT
@@ -108,4 +114,4 @@ while not gameover: #GAME LOOP##################################################
    
 #end game loop------------------------------------------------------------------------------
 pygame.quit()
---
+
