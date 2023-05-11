@@ -62,7 +62,7 @@ while not gameover: #GAME LOOP##################################################
              elif event.key == pygame.K_RIGHT:
                 keys[RIGHT] = True
 
-            elif event.key == pygame.K_UP:
+             elif event.key == pygame.K_UP:
                 keys[UP]=True
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
@@ -71,7 +71,7 @@ while not gameover: #GAME LOOP##################################################
             elif event.key == pygame.K_UP:
                 keys[UP]=False
                 
-             elif event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_RIGHT:
                 keys[RIGHT] = False
          
     #physics section--------------------------------------------------------------------
