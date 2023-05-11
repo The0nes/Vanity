@@ -59,12 +59,14 @@ while not gameover: #GAME LOOP##################################################
             if event.key == pygame.K_LEFT:
                 keys[LEFT]=True
              
-             elif event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_RIGHT:
                 keys[RIGHT] = True
 
-             elif event.key == pygame.K_UP:
+            elif event.key == pygame.K_UP:
                 keys[UP]=True
-        elif event.type == pygame.KEYUP:
+                
+        if event.type == pygame.KEYUP:
+                
             if event.key == pygame.K_LEFT:
                 keys[LEFT]=False
 
@@ -79,6 +81,10 @@ while not gameover: #GAME LOOP##################################################
     if keys[LEFT]==True:
         vx=-3
         direction = LEFT
+        
+    elif keys[RIGHT]==True:
+        vx=3
+        direction = RIGHT
 
     #turn off velocity
     else:
@@ -89,7 +95,7 @@ while not gameover: #GAME LOOP##################################################
  
     #gravity
     if isOnGround == False:
-        vy+=.1 #notice this grows over time, aka ACCELERATION
+        vy+=.10 #notice this grows over time, aka ACCELERATION
    
 
     #update player position
