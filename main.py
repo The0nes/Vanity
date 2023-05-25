@@ -16,6 +16,7 @@ UP = 2
 DOWN = 3
 
 class pipeb:
+    
     def __init__(self, x, y):
         self.xpos = x
         self.ypos = y
@@ -32,31 +33,38 @@ class pipeb:
         if self.xpos < -20: #reset to right side if you move off the left
             self.xpos = random.randrange(800, 1000) #reset to random location off screen
            
-    def collision(self, playerX, playerY):
-        if 
+    def collision(self, xpos, ypos, width, height):
+        if xpos + width > self.xpos and xpos < self.xpos  + 20 and ypos + height > self.ypos and ypos < self.ypos + 800:
+            return True
+        else:
+            return False
+            
 
 
 
 class piped:
-    def __init__(self, x, y):
+     def __init__(self, x, y):
         self.xpos = x
         self.ypos = y
         self.red = random.randrange(0, 200)
         self.blue = random.randrange(100, 200)
         self.green = random.randrange(0,100)
        
-    def draw(self):
+     def draw(self):
         pygame.draw.rect(screen, (self.red, self.green, self.blue), (self.xpos, self.ypos, 20, 800))
         #if you want this to be a picture use the blit function instead
        
-    def move(self):
+     def move(self):
         self.xpos -= 3
         if self.xpos < -20: #reset to right side if you move off the left
             self.ypos = random.randrange(-600, -400)
             self.xpos = random.randrange(800, 900) #reset to random location off screen
            
-    def collision(self, playerX, playerY):
-        pass #bounding box collision
+     def collision(self, xpos, ypos, width, height):
+        if xpos + width > self.xpos and xpos < self.xpos + 20 and ypos + height > self.ypos and ypos < self.ypos + 800: #bounding box collision
+            return True
+        else:
+            return False
 
 
 #instantiate a pipe
@@ -127,7 +135,7 @@ while not gameover: #GAME LOOP##################################################
  
     #gravity
     if isOnGround == False:
-        vy+=.10 #notice this grows over time, aka ACCELERATION
+        vy+=.1 #notice this grows over time, aka ACCELERATION
    
 
     #update player position
@@ -139,11 +147,23 @@ while not gameover: #GAME LOOP##################################################
     p2.move()
     p3.move()
     p4.move()
+    
+    if p1.collision(xpos, ypos, 20, 40) == True:
+        print("Boo")
+    if p2.collision(xpos, ypos, 20, 40) == True:
+        print("rawr")
+    if p3.collision(xpos, ypos, 20, 40) == True:
+        print("uhh")
+    if p4.collision(xpos, ypos, 20, 40) == True:
+        print("huah")
+
+    
+    
     # RENDER Section--------------------------------------------------------------------------------
            
     screen.fill((0,0,0)) #wipe screen so it doesn't smear
  
-    pygame.draw.rect(screen, (100, 200, 100), (xpos, ypos, 20, 40)) #draw player
+    #pygame.draw.rect(screen, (100, 200, 100), (xpos, ypos, 20, 40)) draw player
     screen.blit(player,(xpos, ypos), (framewidth * framenum, rownum * frameheight, framewidth, frameheight))
 
     #draw pipes
@@ -155,3 +175,4 @@ while not gameover: #GAME LOOP##################################################
    
 #end game loop------------------------------------------------------------------------------
 pygame.quit()
+
