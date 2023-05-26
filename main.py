@@ -1,14 +1,14 @@
 import pygame
 import random
 pygame.init()  
-pygame.display.set_caption("easy platformer")  # sets the window title
+pygame.display.set_caption("Vanity")  # sets the window title
 screen = pygame.display.set_mode((800, 800))  # creates game screen
 screen.fill((0,0,0))
 clock = pygame.time.Clock() #set up clock
 gameover = False #variable to run our game loop
 player = pygame.image.load('Purple fly.png')
-
-
+column = pygame.image.load('Column.png')
+column_size = column.get_rect().size
 #CONSTANTS
 LEFT=0
 RIGHT=1
@@ -23,9 +23,11 @@ class pipeb:
         self.red = random.randrange(0, 200)
         self.blue = random.randrange(100, 200)
         self.green = random.randrange(0,100)
-       
+        self.width = 20
+        self.height = 800
     def draw(self):
-        pygame.draw.rect(screen, (self.red, self.green, self.blue), (self.xpos, self.ypos, 20, 800))
+      #pygame.draw.rect(screen, (self.red, self.green, self.blue), (self.xpos, self.ypos, 20, 800))
+        screen.blit(column, (self.xpos, self.ypos))
         #if you want this to be a picture use the blit function instead
        
     def move(self):
@@ -49,9 +51,12 @@ class piped:
         self.red = random.randrange(0, 200)
         self.blue = random.randrange(100, 200)
         self.green = random.randrange(0,100)
+        self.width = 20
+        self.height = 800       
        
      def draw(self):
-        pygame.draw.rect(screen, (self.red, self.green, self.blue), (self.xpos, self.ypos, 20, 800))
+        
+        screen.blit(column, (self.xpos, self.ypos))
         #if you want this to be a picture use the blit function instead
        
      def move(self):
@@ -161,7 +166,7 @@ while not gameover: #GAME LOOP##################################################
     
     # RENDER Section--------------------------------------------------------------------------------
            
-    screen.fill((0,0,0)) #wipe screen so it doesn't smear
+    screen.fill((122, 231, 235)) #wipe screen so it doesn't smear
  
     #pygame.draw.rect(screen, (100, 200, 100), (xpos, ypos, 20, 40)) draw player
     screen.blit(player,(xpos, ypos), (framewidth * framenum, rownum * frameheight, framewidth, frameheight))
